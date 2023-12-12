@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomeActivity">
+
+    <ImageView
+        android:id="@+id/myImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="130dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/myimage" />
+
+    <TextView
+        android:id="@+id/t_id"
+        style="@style/Information"
+        android:layout_marginTop="30dp"
+        android:text="아이디 : "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/call_id"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myImage" />
+
+    <TextView
+        android:id="@+id/call_id"
+        style="@style/Information"
+        android:text="받아올 아이디"
+        app:layout_constraintBottom_toBottomOf="@+id/t_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/t_id"
+        app:layout_constraintTop_toTopOf="@+id/t_id" />
+
+    <TextView
+        android:id="@+id/t_name"
+        style="@style/Information"
+        android:layout_marginTop="30dp"
+        android:text="이름 : "
+        app:layout_constraintEnd_toEndOf="@+id/t_id"
+        app:layout_constraintEnd_toStartOf="@+id/call_name"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/t_id" />
+
+    <TextView
+        android:id="@+id/call_name"
+        style="@style/Information"
+        android:text="받아올 이름"
+        app:layout_constraintBottom_toBottomOf="@+id/t_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/t_name"
+        app:layout_constraintTop_toTopOf="@+id/t_name" />
+
+    <TextView
+        android:id="@+id/t_age"
+        style="@style/Information"
+        android:layout_marginTop="170dp"
+        android:text="나이:24"
+        app:layout_constraintEnd_toEndOf="@+id/myImage"
+        app:layout_constraintStart_toStartOf="@+id/myImage"
+        app:layout_constraintTop_toBottomOf="@+id/myImage" />
+
+    <TextView
+        android:id="@+id/t_mbti"
+        style="@style/Information"
+        android:layout_marginTop="30dp"
+        android:text="MBTI : ISTP"
+        app:layout_constraintEnd_toEndOf="@+id/t_age"
+        app:layout_constraintStart_toStartOf="@+id/t_age"
+        app:layout_constraintTop_toBottomOf="@+id/t_age" />
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="종료"
+        android:textSize="20sp"
+        android:layout_margin="30dp"
+        app:layout_constraintEnd_toEndOf="@+id/t_mbti"
+        app:layout_constraintStart_toStartOf="@+id/t_mbti"
+        app:layout_constraintTop_toBottomOf="@+id/t_mbti" />
+</androidx.constraintlayout.widget.ConstraintLayout>
