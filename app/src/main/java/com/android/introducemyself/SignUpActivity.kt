@@ -20,8 +20,8 @@ class SignUpActivity : AppCompatActivity() {
 
         signBtn.setOnClickListener {
             if(editName.text.isNotEmpty() && editId.text.isNotEmpty() && editPassword.text.isNotEmpty()){
-                val myListType = ListType(editId.text.toString(), editName.text.toString(), editPassword.text.toString())
-                SignInActivity.myIdList.add(myListType)
+                val myListType = User.ListType(editId.text.toString(), editName.text.toString(), editPassword.text.toString())
+                User.myIdList.add(myListType)
                 Toast.makeText(this, "회원가입이 완료되었습니다..", Toast.LENGTH_SHORT).show()
                 // 회원가입된 아이디 값을 signinActivity로 보내기
                 val intent = Intent(this, SignInActivity::class.java)

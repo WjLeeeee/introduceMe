@@ -9,16 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 
-data class ListType(
-    val myId:String,
-    val myName:String,
-    val myPassword:String
-)
 class SignInActivity : AppCompatActivity() {
-    companion object{
-        val myIdList = mutableListOf<ListType>()
-    }
-
     //ActivityResultLauncher 자료형인 resultLauncher변수를 전역변수로 선언.
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
 
@@ -44,17 +35,22 @@ class SignInActivity : AppCompatActivity() {
             val myIds = myId.text.toString()
             val myPasswords = myPassword.text.toString()
             if(myIds.isNotEmpty() && myPasswords.isNotEmpty()){
-                for(value in myIdList){
+                for(value in User.myIdList){
                     if(value.myId == myIds && value.myPassword == myPasswords){
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
-                        loginIntent.putExtra("IdData", value.myId)
-                        loginIntent.putExtra("nameData", value.myName)
+                        loginIntent.putExtra("UserData", value)
                         startActivity(loginIntent)
+                        //intent의 task관리 공부.
+                        //string을 넘기지 말고 user클래스를 만들어서 객체를 넘기기
                     }else{
                         Toast.makeText(this, "등록된 정보가 없습니다. 회원가입을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show()
                     }
                 }
-            }else{
+            } else if(myIds.isNotEmpty() && !myPasswords.isNotEmpty()){
+                Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
+            } else if(!myIds.isNotEmpty() && myPasswords.isNotEmpty()){
+                Toast.makeText(this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show()
+            } else{
                 Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
             }
         }
@@ -64,7 +60,6 @@ class SignInActivity : AppCompatActivity() {
             //signupActivity에서 회원가입한 아이디와 비밀번호를 가져오기 위해서 startActivity대신 resultLauncher사용.
             resultLauncher.launch(signUpIntent)
         }
-
     }
 
     //회원가입한 내용 가져오기
@@ -78,5 +73,4 @@ class SignInActivity : AppCompatActivity() {
             }
         }
     }
-
 }

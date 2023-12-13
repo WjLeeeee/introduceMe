@@ -15,12 +15,16 @@ class HomeActivity : AppCompatActivity() {
         val calledID = findViewById<TextView>(R.id.call_id)
         val calledName = findViewById<TextView>(R.id.call_name)
         val finishBtn = findViewById<Button>(R.id.btn_finish)
-
-
-        val IdData = intent.getStringExtra("IdData")
-        val nameData = intent.getStringExtra("nameData")
-        calledID.setText(IdData)
-        calledName.setText(nameData)
+        
+//        val idData = intent.getStringExtra("IdData")
+//        val nameData = intent.getStringExtra("nameData")
+        val userData = intent.getSerializableExtra("UserData") as? User.ListType
+        if(userData != null){
+            var id = userData.myId
+            var name = userData.myName
+            calledID.setText(id)
+            calledName.setText(name)
+        }
 
         val imageView: ImageView = findViewById(R.id.myImage)
         val imageArray = arrayOf(
@@ -28,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
             R.drawable.myimage2,
             R.drawable.myimage3,
             R.drawable.myimage4,
-            R.drawable.myimage5
+            R.drawable.myimage5,
         )
         val randomImage = imageArray[Random.nextInt(imageArray.size)]
         imageView.setImageResource(randomImage)
