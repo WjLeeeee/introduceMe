@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
 //        val nameData = intent.getStringExtra("nameData")
         val userData = intent.getSerializableExtra("UserData") as? User.ListType
         if(userData != null){
-            var id = userData.myId
+            var id = userData.myEmail
             var name = userData.myName
             calledID.setText(id)
             calledName.setText(name)

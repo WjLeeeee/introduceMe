@@ -36,7 +36,7 @@ class SignInActivity : AppCompatActivity() {
             val myPasswords = myPassword.text.toString()
             if(myIds.isNotEmpty() && myPasswords.isNotEmpty()){
                 for(value in User.myIdList){
-                    if(value.myId == myIds && value.myPassword == myPasswords){
+                    if(value.myEmail == myIds && value.myPassword == myPasswords){
                         Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
                         loginIntent.putExtra("UserData", value)
                         startActivity(loginIntent)
