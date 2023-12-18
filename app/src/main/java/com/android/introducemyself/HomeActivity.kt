@@ -8,21 +8,20 @@ import android.widget.TextView
 import kotlin.random.Random
 
 class HomeActivity : AppCompatActivity() {
+
+    private val calledId :TextView by lazy {findViewById(R.id.call_id)}
+    private val calledName :TextView by lazy {findViewById(R.id.call_name)}
+    private val finishBtn :TextView by lazy {findViewById(R.id.btn_finish)}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        val calledID = findViewById<TextView>(R.id.call_id)
-        val calledName = findViewById<TextView>(R.id.call_name)
-        val finishBtn = findViewById<Button>(R.id.btn_finish)
-        
-//        val idData = intent.getStringExtra("IdData")
-//        val nameData = intent.getStringExtra("nameData")
         val userData = intent.getSerializableExtra("UserData") as? User.ListType
         if(userData != null){
             var id = userData.myEmail
             var name = userData.myName
-            calledID.setText(id)
+            calledId.setText(id)
             calledName.setText(name)
         }
 
