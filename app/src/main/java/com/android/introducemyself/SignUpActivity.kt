@@ -1,4 +1,5 @@
 package com.android.introducemyself
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -16,49 +17,17 @@ import androidx.core.widget.addTextChangedListener
 
 class SignUpActivity : AppCompatActivity() {
 
-    private val etName: EditText by lazy {
-        findViewById(R.id.et_name)
-    }
-
-    private val tvNameError: TextView by lazy {
-        findViewById(R.id.tv_name_error)
-    }
-
-    private val etEmail: EditText by lazy {
-        findViewById(R.id.et_email)
-    }
-
-    private val etEmailProvider: EditText by lazy {
-        findViewById(R.id.et_provider)
-    }
-
-    private val serviceProvider: Spinner by lazy {
-        findViewById(R.id.service_provider)
-    }
-
-    private val tvEmailError: TextView by lazy {
-        findViewById(R.id.tv_email_error)
-    }
-
-    private val etPassword: EditText by lazy {
-        findViewById(R.id.et_password)
-    }
-
-    private val tvPasswordError: TextView by lazy {
-        findViewById(R.id.tv_password_error)
-    }
-
-    private val etPasswordConfirm: EditText by lazy {
-        findViewById(R.id.et_password_confirm)
-    }
-
-    private val tvPasswordConfirmError: TextView by lazy {
-        findViewById(R.id.tv_password_confirm_error)
-    }
-
-    private val btConfirm: Button by lazy {
-        findViewById(R.id.bt_confirm)
-    }
+    private val etName: EditText by lazy { findViewById(R.id.et_name) }
+    private val tvNameError: TextView by lazy { findViewById(R.id.tv_name_error) }
+    private val etEmail: EditText by lazy { findViewById(R.id.et_email) }
+    private val etEmailProvider: EditText by lazy { findViewById(R.id.et_provider) }
+    private val serviceProvider: Spinner by lazy { findViewById(R.id.service_provider) }
+    private val tvEmailError: TextView by lazy { findViewById(R.id.tv_email_error) }
+    private val etPassword: EditText by lazy { findViewById(R.id.et_password) }
+    private val tvPasswordError: TextView by lazy { findViewById(R.id.tv_password_error) }
+    private val etPasswordConfirm: EditText by lazy { findViewById(R.id.et_password_confirm) }
+    private val tvPasswordConfirmError: TextView by lazy { findViewById(R.id.tv_password_confirm_error) }
+    private val btConfirm: Button by lazy { findViewById(R.id.bt_confirm) }
 
 
     private val editTexts
@@ -77,12 +46,17 @@ class SignUpActivity : AppCompatActivity() {
         initView()
 
         btConfirm.setOnClickListener {
-            val myType = User.ListType(etEmail.text.toString(), etName.text.toString(), etPassword.text.toString())
+            val myType = User.ListType(
+                etEmail.text.toString(),
+                etName.text.toString(),
+                etPassword.text.toString()
+            )
             User.myIdList.add(myType)
             Toast.makeText(this, "회원가입이 완료되었습니다..", Toast.LENGTH_SHORT).show()
             // 회원가입된 아이디 값을 signinActivity로 보내기
             val intent = Intent(this, SignInActivity::class.java)
-            intent.putExtra("id", etEmail.text.toString())
+            val finalEmail = etEmail.text.toString() + "@" + etEmailProvider.text.toString()
+            intent.putExtra("id", finalEmail)
             intent.putExtra("password", etPassword.text.toString())
             setResult(RESULT_OK, intent)
             finish()
@@ -104,15 +78,17 @@ class SignUpActivity : AppCompatActivity() {
      * spinner활용
      */
     private fun setServiceProvider() {
+
+        val emailArray = arrayOf(
+            getString(R.string.sign_up_email_provider_gmail),
+            getString(R.string.sign_up_email_provider_kakao),
+            getString(R.string.sign_up_email_provider_naver),
+            getString(R.string.sign_up_email_provider_direct)
+        )
+
         serviceProvider.adapter = ArrayAdapter(
             this,
-            android.R.layout.simple_spinner_dropdown_item,
-            listOf(
-                getString(R.string.sign_up_email_provider_gmail),
-                getString(R.string.sign_up_email_provider_kakao),
-                getString(R.string.sign_up_email_provider_naver),
-                getString(R.string.sign_up_email_provider_direct)
-            )
+            android.R.layout.simple_spinner_dropdown_item, emailArray
         )
 
         serviceProvider.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -126,6 +102,7 @@ class SignUpActivity : AppCompatActivity() {
             ) {
                 val isVisibleProvider = position == serviceProvider.adapter.count - 1
                 etEmailProvider.isVisible = isVisibleProvider
+                etEmailProvider.setText(emailArray[position])
             }
         }
     }
