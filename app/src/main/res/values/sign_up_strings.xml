@@ -6,6 +6,7 @@
     <string name="sign_up_email_provider_kakao">kakao.com</string>
     <string name="sign_up_email_provider_naver">naver.com</string>
     <string name="sign_up_email_provider_direct">직접입력</string>
+    <string name="sign_up_email_provider_direct_error">\@를 포함할수 없습니다</string>
     <string name="sign_up_email_error_blank">이메일을 입력해주세요.</string>
     <string name="sign_up_email_error_at">\u0040를 포함할 수 없습니다.</string>
     <string name="sign_up_email_error_provider">서비스 제공자를 입력해주세요.</string>

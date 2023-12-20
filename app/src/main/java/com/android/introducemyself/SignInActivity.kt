@@ -20,7 +20,7 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin)
+        setContentView(R.layout.activity_sign_in)
 
         myId = findViewById(R.id.et_loginId)
         myPassword = findViewById(R.id.et_loginPassword)
@@ -37,21 +37,21 @@ class SignInActivity : AppCompatActivity() {
             if(myIds.isNotEmpty() && myPasswords.isNotEmpty()){
                 for(value in User.myIdList){
                     if(value.myEmail == myIds && value.myPassword == myPasswords){
-                        Toast.makeText(this, "로그인 성공", Toast.LENGTH_SHORT).show()
+                        message(R.string.sign_in_login_success)
                         loginIntent.putExtra("UserData", value)
                         startActivity(loginIntent)
                         //intent의 task관리 공부.
                         //string을 넘기지 말고 user클래스를 만들어서 객체를 넘기기
                     }else{
-                        Toast.makeText(this, "등록된 정보가 없습니다. 회원가입을 먼저 진행해주세요.", Toast.LENGTH_SHORT).show()
+                        message(R.string.sign_in_noData)
                     }
                 }
-            } else if(myIds.isNotEmpty() && !myPasswords.isNotEmpty()){
-                Toast.makeText(this, "비밀번호를 입력해주세요", Toast.LENGTH_SHORT).show()
-            } else if(!myIds.isNotEmpty() && myPasswords.isNotEmpty()){
-                Toast.makeText(this, "아이디를 입력해주세요", Toast.LENGTH_SHORT).show()
+            } else if(myIds.isNotEmpty() && myPasswords.isEmpty()){
+                message(R.string.sign_in_put_password)
+            } else if(myIds.isEmpty() && myPasswords.isNotEmpty()){
+                message(R.string.sign_in_put_email)
             } else{
-                Toast.makeText(this, "로그인 실패", Toast.LENGTH_SHORT).show()
+                message(R.string.sign_in_login_fail)
             }
         }
         signup.setOnClickListener {
@@ -73,4 +73,10 @@ class SignInActivity : AppCompatActivity() {
             }
         }
     }
+
+    //Toast메세지 많이 쓰니깐 함수로.
+    private fun message(value:Int){
+        Toast.makeText(this, getString(value), Toast.LENGTH_SHORT).show()
+    }
+
 }

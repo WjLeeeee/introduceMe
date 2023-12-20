@@ -46,8 +46,9 @@ class SignUpActivity : AppCompatActivity() {
         initView()
 
         btConfirm.setOnClickListener {
+            val finalEmail = etEmail.text.toString() + "@" + etEmailProvider.text.toString()
             val myType = User.ListType(
-                etEmail.text.toString(),
+                finalEmail,
                 etName.text.toString(),
                 etPassword.text.toString()
             )
@@ -55,7 +56,6 @@ class SignUpActivity : AppCompatActivity() {
             Toast.makeText(this, "회원가입이 완료되었습니다..", Toast.LENGTH_SHORT).show()
             // 회원가입된 아이디 값을 signinActivity로 보내기
             val intent = Intent(this, SignInActivity::class.java)
-            val finalEmail = etEmail.text.toString() + "@" + etEmailProvider.text.toString()
             intent.putExtra("id", finalEmail)
             intent.putExtra("password", etPassword.text.toString())
             setResult(RESULT_OK, intent)
@@ -101,11 +101,18 @@ class SignUpActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val isVisibleProvider = position == serviceProvider.adapter.count - 1
-                etEmailProvider.isVisible = isVisibleProvider
-                etEmailProvider.setText(emailArray[position])
+                if(isVisibleProvider) {
+                    etEmailProvider.isVisible = isVisibleProvider
+                    etEmailProvider.setText("")
+                }
+                else{
+                    etEmailProvider.isVisible = isVisibleProvider
+                    etEmailProvider.setText(emailArray[position])
+                }
             }
         }
     }
+
 
     private fun setTextChangedListener() {
         editTexts.forEach { editText ->
@@ -167,6 +174,14 @@ class SignUpActivity : AppCompatActivity() {
             else -> ""
         }
     }
+    private fun getValidProvider():String{
+        val text = etEmailProvider.text.toString()
+        return when{
+            text.isBlank() -> getString(R.string.sign_up_email_error_provider)
+            text.contains("@") -> getString(R.string.sign_up_email_error_at)
+            else -> ""
+        }
+    }
 
     private fun getMessageValidEmailProvider(): String {
         val providerRex = Regex("[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
@@ -176,7 +191,7 @@ class SignUpActivity : AppCompatActivity() {
             && (etEmailProvider.text.toString().isBlank()
                     || providerRex.matches(text).not())
         ) {
-            getString(R.string.sign_up_email_error_provider)
+            getValidProvider()
         } else {
             getMessageValidEmail()
         }
