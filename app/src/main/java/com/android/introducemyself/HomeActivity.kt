@@ -28,10 +28,10 @@ class HomeActivity : AppCompatActivity() {
         val imageView: ImageView = findViewById(R.id.myImage)
         val imageArray = arrayOf(
             R.drawable.myimage,
-            R.drawable.myimage2,
-            R.drawable.myimage3,
-            R.drawable.myimage4,
-            R.drawable.myimage5,
+            R.drawable.myimagetwo,
+            R.drawable.myimagethree,
+            R.drawable.myimagefour,
+            R.drawable.myimagefive,
         )
         val randomImage = imageArray[Random.nextInt(imageArray.size)]
         imageView.setImageResource(randomImage)
