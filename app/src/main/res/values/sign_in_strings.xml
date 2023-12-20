@@ -1,0 +1,11 @@
+<resources>
+    <string name="sign_in_email">이메일</string>
+    <string name="sign_in_password">비밀번호</string>
+    <string name="sign_in_email_hint">이메일을 입력하세요</string>
+    <string name="sign_in_password_hint">비밀번호를 입력하세요</string>
+    <string name="sign_in_login_success">로그인 성공</string>
+    <string name="sign_in_login_fail">로그인 실패</string>
+    <string name="sign_in_noData">등록된 정보가 없습니다. 회원가입을 먼저 진행해주세요</string>
+    <string name="sign_in_put_password">비밀번호를 입력해주세요</string>
+    <string name="sign_in_put_email">아이디를 입력해주세요</string>
+</resources>
