@@ -2,6 +2,7 @@ package com.android.introducemyself
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -28,7 +29,6 @@ class SignUpActivity : AppCompatActivity() {
     private val etPasswordConfirm: EditText by lazy { findViewById(R.id.et_password_confirm) }
     private val tvPasswordConfirmError: TextView by lazy { findViewById(R.id.tv_password_confirm_error) }
     private val btConfirm: Button by lazy { findViewById(R.id.bt_confirm) }
-
 
     private val editTexts
         get() = listOf(
@@ -90,7 +90,6 @@ class SignUpActivity : AppCompatActivity() {
             this,
             android.R.layout.simple_spinner_dropdown_item, emailArray
         )
-
         serviceProvider.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) = Unit
 
@@ -174,6 +173,7 @@ class SignUpActivity : AppCompatActivity() {
             else -> ""
         }
     }
+
     private fun getValidProvider():String{
         val text = etEmailProvider.text.toString()
         return when{

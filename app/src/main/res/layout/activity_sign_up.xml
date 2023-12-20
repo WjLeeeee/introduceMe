@@ -51,7 +51,7 @@
                     android:id="@+id/tv_name_error"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#FF0000"
+                    android:textColor="@color/red"
                     android:text="@string/sign_up_name_error" />
             </LinearLayout>
 
@@ -96,7 +96,7 @@
                     android:id="@+id/tv_email_error"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#FF0000"
+                    android:textColor="@color/red"
                     android:text = "@string/sign_up_email_error_blank"/>
             </LinearLayout>
 

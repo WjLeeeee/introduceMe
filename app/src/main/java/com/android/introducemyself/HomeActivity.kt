@@ -2,6 +2,7 @@ package com.android.introducemyself
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,7 +12,7 @@ class HomeActivity : AppCompatActivity() {
 
     private val calledId :TextView by lazy {findViewById(R.id.call_id)}
     private val calledName :TextView by lazy {findViewById(R.id.call_name)}
-    private val finishBtn :TextView by lazy {findViewById(R.id.btn_finish)}
+    private val finishBtn :View by lazy {findViewById(R.id.btn_finish)}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +29,10 @@ class HomeActivity : AppCompatActivity() {
         val imageView: ImageView = findViewById(R.id.myImage)
         val imageArray = arrayOf(
             R.drawable.myimage,
-            R.drawable.myimage2,
-            R.drawable.myimage3,
-            R.drawable.myimage4,
-            R.drawable.myimage5,
+            R.drawable.myimagetwo,
+            R.drawable.myimagethree,
+            R.drawable.myimagefour,
+            R.drawable.myimagefive,
         )
         val randomImage = imageArray[Random.nextInt(imageArray.size)]
         imageView.setImageResource(randomImage)
@@ -39,6 +40,7 @@ class HomeActivity : AppCompatActivity() {
         finishBtn.setOnClickListener {
             finish()
         }
+
 
     }
 }
